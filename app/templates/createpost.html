@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create a post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="CSS/style.css") }}">
+</head>
+<body>
+<div style="display:flex;justify-content:flex-end">
+    <a href="{{ url_for('search') }}">Search | </a>
+    <a href="{{ url_for('profile', username=username) }}">My Profile | </a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+<h1>Create a post</h1>
+<form method="post" action="{{ url_for('createpost') }}" enctype="multipart/form-data">
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title">
+    <br>
+    <label for="caption">Caption:</label>
+    <textarea id="caption" name="caption"></textarea>
+    <br>
+    <label for="file">Upload the File:</label>
+    <input type="file" id="file" name="file">
+    <br><br>
+    <input type="submit" value="Create post">
+</form>
+</body>
+</html>

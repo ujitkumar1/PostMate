@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="CSS/style.css") }}">
+</head>
+<body>
+<div style="display:flex;justify-content:flex-end">
+    <a href="{{ url_for('search') }}">Search | </a>
+    <a href="{{ url_for('profile', username=session['username']) }}">My Profile| </a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+<h2>Profile Update</h2>
+<form method="post" action="{{ url_for('updateuser' , user_id = user.id) }}">
+    <div class="mb-3">
+        <label>Name:</label>
+        <input type="text" name="name" value="{{ user.name }}" required>
+    </div>
+    <div class="mb-3">
+        <label>Password:</label>
+        <textarea name="password" required>{{ user.password }}</textarea>
+    </div>
+    <input type="submit" value="Update">
+</form>
+
+</body>
+</html>

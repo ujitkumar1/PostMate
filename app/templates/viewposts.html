@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Posts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="CSS/style.css") }}">
+</head>
+<body>
+<div style="display:flex;justify-content:flex-end">
+    <a href="{{ url_for('search') }}">Search | </a>
+    <a href="{{ url_for('profile', username=user.username) }}">My Profile | </a>
+    <a href="{{ url_for('logout') }}">Logout </a>
+</div>
+<h1>View Posts</h1>
+<nav>
+    <a href="{{ url_for('createpost') }}">Create a post</a>
+</nav>
+{% for post in posts %}
+    <div class="post">
+        <h2>Title : {{ post.title }}</h2>
+        <p>Caption : {{ post.caption }}</p>
+        <img src="{{ url_for('static', filename="uploads/"+post.image_url) }}" width='100' height='100'>
+        <br>
+        {% if post.user_id == user.id %}
+            <a href="{{ url_for('viewpost', post_id=post.id) }}">View</a>
+            <a href="{{ url_for('updatepost', post_id=post.id) }}">Update</a>
+            <a href="{{ url_for('deletepost', post_id=post.id) }}">Delete</a>
+        {% endif %}
+    </div>
+{% endfor %}
+</body>
+</html>

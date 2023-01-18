@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delete_post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="CSS/style.css") }}">
+</head>
+<body>
+<h2>Are you sure you want to delete this post?</h2>
+<form method="post">
+    <button type="submit">Delete</button>
+    <a href="{{ url_for('viewposts') }}">Cancel</a>
+</form>
+
+</body>
+</html>

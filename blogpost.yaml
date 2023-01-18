@@ -1,0 +1,345 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: User API
+servers:
+  - url: 'http://localhost:5000'
+paths:
+  /signup:
+    get:
+      tags:
+        - user
+      summary: Returns the signup page
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+    post:
+      tags:
+        - user
+      summary: Creates a new user
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Username already exists
+          content:
+            text/html:
+              schema:
+                type: string
+  /logout:
+    get:
+      tags:
+        - user
+      summary: Logsout the user from the session
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Not allowed
+          content:
+            text/html:
+              schema:
+                type: string
+  /updateuser/{user_id}:
+    get:
+      tags:
+        - user
+      summary: Returns the update user page
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '403':
+          description: User not logged in
+          content:
+            text/html:
+              schema:
+                type: string
+        '401':
+          description: Not Allowed to update other user profile
+          content:
+            text/html:
+              schema:
+                type: string
+    post:
+      tags:
+        - user
+      summary: Updates the user information
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+  /deleteuser/{username}:
+    get:
+      tags:
+        - user
+      summary: Deletes the user
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '403':
+          description: Not Allowed
+          content:
+            text/html:
+              schema:
+                type: string
+        '401':
+          description: Not Allowed
+          content:
+            text/html:
+              schema:
+                type: string
+        
+  /profile/{username}:
+    get:
+      tags:
+        - user
+      summary: Returns the user's profile page
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: User not found
+        '403':
+          description: User not loged in
+  /createpost:
+    post:
+      tags:
+        - Blogs
+      summary: Creates a new blog post
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                caption:
+                  type: string
+                file:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Invalid file format. Allowed formats are jpg, jpeg, png, gif
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+    get:
+      tags:
+        - Blogs
+      summary: Returns the create post page
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '403':
+          description: User not loged in
+  /deletepost/{post_id}:
+    post:
+      tags:
+        - Blogs
+      summary: Deletes a blog post
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+        '404':
+          description: Post not found
+  /updatepost/{post_id}:
+    get:
+      tags:
+        - Blogs
+      summary: Returns the update post page
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '403':
+          description: User not loged in
+    post:
+      tags:
+        - Blogs
+      summary: Updates the blog post information
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                caption:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Invalid file format. Allowed formats are jpg, jpeg, png, gif
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /viewpost/{post_id}:
+    get:
+      tags:
+        - Blogs
+      summary: Returns the single view post page
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Post not found or unauthorized
+        '403':
+          description: User not loged in
+  /viewposts:
+    get:
+      tags:
+        - Blogs
+      summary: Returns the viewposts page
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: User not loged in
+
+

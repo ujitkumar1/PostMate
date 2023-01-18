@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="CSS/style.css") }}">
+</head>
+<body>
+<div style="display:flex;justify-content:flex-end">
+    <a href="{{ url_for('search') }}">Search | </a>
+    <a href="{{ url_for('profile', username=username) }}">My Profile| </a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+<div>
+    <h2>Type the Username below to Search</h2>
+    <form action="{{ url_for('search') }}" method="post">
+        <input type="text" name="search_term" placeholder="Enter the username">
+        <input type="submit" value="Search">
+    </form>
+</div>
+{% if users %}
+    <div>
+        <h2>User's List :</h2>
+        <ol>
+            {% for user in users %}
+                {% if user.username != username %}
+                    <li>{{ user.username }}
+                        {% if user.is_following_status %}
+                            <a href="{{ url_for('unfollowuser', username=user.username) }}">Unfollow</a>
+                        {% else %}
+                            <a href="{{ url_for('followuser', username=user.username) }}">Follow</a>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
+{% endif %}
+</body>
+</html>

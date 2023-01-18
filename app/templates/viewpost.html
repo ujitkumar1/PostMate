@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="CSS/style.css") }}">
+</head>
+<body>
+<div style="display:flex;justify-content:flex-end">
+    <a href="{{ url_for('search') }}">Search | </a>
+    <a href="{{ url_for('profile', username=user.username) }}">My Profile| </a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</div>
+<div class="post">
+    <h2>Title : {{ post.title }}</h2>
+    <p>Caption : {{ post.caption }}</p>
+    <img src="{{ url_for('static', filename="uploads/"+post.image_url) }}" width='100' height='100'>
+</div>
+<a href="{{ url_for('home', username=user.username) }}">Go Home</a>
+</body>
+</html>

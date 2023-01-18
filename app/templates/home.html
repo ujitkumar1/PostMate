@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="CSS/style.css") }}">
+</head>
+<body>
+<div style="display:flex;justify-content:flex-end">
+    <a href="{{ url_for('search') }}">Search | </a>
+    {% if username %}
+        <a href="{{ url_for('profile', username=username) }}">My Profile | </a>
+    {% else %}
+        <a href="{{ url_for('profile', username=session["username"]) }}">My Profile | </a>
+    {% endif %}
+    <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+<h1>Welcome {{ username }}</h1>
+<nav>
+    <a href="{{ url_for('createpost') }}">Create a post</a>
+    <a href="{{ url_for('viewposts') }}">View Posts</a>
+</nav>
+{% if followed_posts %}
+    <h2> Posts from people you are following:</h2>
+    <ol>
+        {% for post in followed_posts %}
+            <li>
+                <a href="{{ url_for('profile', username=post.author_of_post.username) }}">Author
+                    - {{ post.author_of_post.username }}</a>
+                <p>Title - {{ post.title }}</p>
+                <p>Description - {{ post.caption }}</p>
+                <img src="{{ url_for('static', filename="uploads/"+post.image_url) }}" width='100' height='100'>
+                <p>Creation Time - {{ post.timestamp }}</p>
+            </li>
+        {% endfor %}
+    </ol>
+{% endif %}
+</body>
+</html>
