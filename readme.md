@@ -96,6 +96,12 @@ The below diagram shows the Architecture of the Blog Application:
 
 ![Alt Text](archi.png)
 
+This blogging application offers a comprehensive set of features for optimal user experience. Users can create, 
+update, and delete their own profiles with ease and Users can also view their profile stats. The search and follow 
+function allow users to discover and keep up to date with their favourite bloggers, and the option to unfollow at 
+any time provides flexibility. The application also supports the full range of CRUD operations for blog posts, 
+enabling users to create, view, update, and delete posts with precision and efficiency as well as for the Users. 
+Overall, our application is designed to provide a professional, streamlined experience for all users.
 
 ### Contact:
 
