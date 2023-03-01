@@ -94,7 +94,7 @@ docker run -p 5000:5000 taskmaster
 
 The below diagram shows the Architecture of the Blog Application:
 
-![Alt Text](https://drive.google.com/file/d/1G2BFN0y7QfHIiUSOSXzT5usZrmp4PAbZ/view?usp=share_link)
+![Alt Text](archi.png)
 
 
 ### Contact:
