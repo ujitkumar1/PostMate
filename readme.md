@@ -26,6 +26,12 @@ Python is the main programming language used in the flask and flask_restful and 
 flask_sqlalchemy and is the foundation for the project.
 ```
 
+### DB Schema Design:
+
+The below diagram shows the Data Base Structure
+
+![Alt Text](db.png)
+
 ### API DESIGN:
 The CRUD (Create, Read, Update, and Delete) operations for both user and blogpost entities have been 
 implemented and documented in the OpenAPI specification, utilizing the YAML format. The file containing the 
