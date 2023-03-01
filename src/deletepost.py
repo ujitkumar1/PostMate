@@ -1,7 +1,7 @@
 from flask import session, redirect, url_for, flash
 from flask_restful import Resource
 
-from app import db
+from src import db
 from models import BlogPost
 
 

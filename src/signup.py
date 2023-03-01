@@ -1,7 +1,7 @@
 from flask import render_template, make_response, request, session, redirect
 from flask_restful import Resource
 
-from app import db
+from src import db
 from models import User
 
 

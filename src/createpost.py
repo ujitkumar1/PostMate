@@ -4,7 +4,7 @@ from flask import session, redirect, request, render_template, make_response
 from flask_restful import Resource
 from werkzeug.utils import secure_filename
 
-from app import db, app
+from src import db, app
 from models import BlogPost
 
 

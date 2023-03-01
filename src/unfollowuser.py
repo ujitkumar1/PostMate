@@ -1,7 +1,7 @@
 from flask import session, redirect
 from flask_restful import Resource
 
-from app import db
+from src import db
 from models import User
 
 
